@@ -22,5 +22,5 @@ def XorFunc(password, key='secretword', encode = False, decode = False):
 
 
 if __name__=='__main__':
-    print (XorFunc('testpass',key='_', encode=True)) #-> HDkJOG5tbGtq
+    print (XorFunc('testpass',key='_', encode=True))
     print (XorFunc('KzosKy8+LCw=',key='_', decode=True))
