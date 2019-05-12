@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-# author: Evgeniy Vakhrushev
 # py 3.7 recommended, minimal -3.4
 
 import os, sys
