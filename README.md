@@ -1,2 +1,5 @@
-# fotor38
-interestingly enough or not
+### Scripts on: 
+- **python <2,3>**
+- **bash**
+- **ansible**
+
