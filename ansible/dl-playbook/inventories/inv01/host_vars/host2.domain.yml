@@ -1,0 +1,11 @@
+---
+
+
+os_user: some_app2_user
+os_group: some_app2_group
+fetchdir: /path/to/fetchdir
+ansible_user: service_user
+ansible_become: yes
+ansible_become_method: su
+ansible_become_user: "{{ os_user }}"
+ansible_become_pass: <vault_pass>

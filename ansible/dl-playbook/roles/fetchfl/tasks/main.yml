@@ -1,0 +1,49 @@
+---
+
+- include_vars: allr.yml
+  tags:
+          - ar
+
+- name: remove old scripts
+  file:
+      path: "buffer/"
+      state: absent
+  delegate_to: 127.0.0.1
+  tags:
+    - ar
+
+- name: find log files
+  find:
+    path: "{{ logfolder }}"
+    file_type: file
+    patterns: "*.diff"
+  tags:
+    - ar
+
+- name: archive {{ inventory_hostname }} {{ env_name }} diff reports
+  archive:
+    path: "{{ difffolder }}/*diff"
+    dest: "{{ copyfrom }}/{{ env_name }}-diffzip.zip"
+    format: zip
+  tags:
+    - ar
+
+- name: archive {{ inventory_hostname }} {{ env_name }} log reports
+  archive:
+    path: "{{ logfolder }}/*log"
+    dest: "{{ copyfrom }}/{{ env_name }}-logszip.zip"
+    format: zip
+  tags:
+    - ar
+
+- name: fetch files
+  fetch:
+    src: "{{ copyfrom }}/{{ item }}"
+    dest: buffer/
+    flat: yes
+  with_items:
+     - "{{ env_name }}-diffzip.zip"
+     - "{{ env_name }}-logszip.zip"
+  tags:
+      - ar
+

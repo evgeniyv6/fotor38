@@ -1,0 +1,8 @@
+---
+
+- hosts: 
+     - srvgroup
+  gather_facts: no
+  roles:
+     - gitpull
+

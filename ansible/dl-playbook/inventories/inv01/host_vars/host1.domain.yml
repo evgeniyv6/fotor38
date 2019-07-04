@@ -1,0 +1,10 @@
+---
+
+os_user: some_app_user
+os_group: some_app_group
+ansible_port: 22
+ansible_user: service_user
+ansible_become: yes
+ansible_become_method: su
+ansible_become_user: "{{ os_user }}"
+difffolder: "/path/to/diff/files"

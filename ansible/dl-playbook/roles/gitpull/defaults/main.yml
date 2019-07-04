@@ -1,0 +1,33 @@
+---
+
+git:
+  protocol: 'https'
+  user: 'some_service_user'
+#vault for AWX syntax
+  password: 
+    __ansible_vault: |
+          $ANSIBLE_VAULT;1.1;AES256
+          <a lot of numbers>
+  address: 'gitlab.domain'
+  project: '/path/to/project'
+
+cloneGit:
+  root_path: '/tmp/git'
+
+versionGit:
+  name: 'dev'
+
+gitlab:
+  config:
+    - scope: local
+      name: user.name
+      value: some_service_user
+    - scope: local
+      name: user.email
+      value: some_service_user@domain
+    - scope: global
+      name: http.sslVerify
+      value: "false"
+
+msgGitCommit:
+  message: test message

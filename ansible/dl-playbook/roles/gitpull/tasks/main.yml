@@ -1,0 +1,45 @@
+---
+
+- name: Git-config
+  git_config:
+    scope: '{{ item.scope }}'
+    name: '{{ item.name }}'
+    value: '{{ item.value }}'
+  become: yes
+  become_user: some_app_user
+  loop:
+    '{{ gitlab.config }}'
+  when:
+    ( item.scope == 'global' )
+  tags: 
+    - git
+
+- name: Clone git over http(s)
+  become: yes
+  become_user: some_app_user
+  git:
+    repo: '{{ git.protocol }}://{{ git.user }}:{{ git.password|urlencode }}@{{ git.address }}/{{ git.project }}.git'
+    dest: '{{ cloneGit.root_path }}'
+    version: '{{ versionGit.name }}'
+    clone: yes
+    force: yes
+  register: git_https_clone_result
+  when:
+    ( git.protocol != 'ssh' )
+  tags: 
+    - git
+
+- name: Git-config
+  become: yes
+  become_user: some_app_user
+  git_config:
+    scope: '{{ item.scope }}'
+    name: '{{ item.name }}'
+    repo: '{{ cloneGit.root_path }}'
+    value: '{{ item.value }}'
+  loop:
+    '{{ gitlab.config }}'
+  when:
+    ( item.scope == 'local' )
+  tags: 
+       - git

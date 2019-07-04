@@ -1,0 +1,10 @@
+
+[p01]
+host1.domain
+
+[p02]
+host2.domain
+
+[agentsservers:children]
+p01
+p02

@@ -1,0 +1,43 @@
+---
+
+- include_vars: allr.yml
+  tags:
+          - copyscripts
+
+- name: create a directory for uploaded scripts
+  file:
+    dest: "{{ copyfrom }}"
+    mode: 0755
+    owner: "{{ os_user }}"
+    group: "{{ os_group }}"
+    state: directory
+  run_once: yes
+  ignore_errors: yes
+  tags:
+      - cscripts
+
+- name: remove old scripts
+  file:
+      path: "{{ copyfrom }}/{{ item }}"
+      state: absent
+  with_items:
+      - "{{ env_name }}-logszip.zip"
+      - "{{ env_name }}-diffzip.zip"
+  run_once: yes
+  ignore_errors: yes
+  tags:
+      - cscripts        
+
+#- name: copy the action script template - security
+#  template:
+#     src: "{{ item.src }}"
+#     dest: "{{ item.dest }}"
+#     owner: "{{ os_user }}"
+#     group: "{{ os_group }}"
+#     mode: "{{ item.mode }}"
+#  with_items:
+#     - {src: 'zipfiles-{{ env_name }}.py',dest: '{{ uploaded_scripts_dir }}/zipfiles.py',mode: '0700'}
+#  run_once: yes
+#  ignore_errors: yes
+#  tags:
+#      - cscripts

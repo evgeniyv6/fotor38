@@ -1,0 +1,6 @@
+---
+
+copyfrom: /path/to/fetchdir
+copyto: /path/to/push
+env_name: dev
+logfolder: "/path/to/log/files"
