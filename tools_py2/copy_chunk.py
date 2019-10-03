@@ -10,7 +10,8 @@ blksz=1024*500
 def cpfl(fromdir,todir,verbose=True):
 	if os.path.getsize(fromdir) <= maxfl:
 		btfrom=open(fromdir,'rb').read()
-		open(todir,'wb').write(btfrom)
+		with open(todir,'wb') as td: td.write(btfrom)
+		btfrom.close()
 	else:
 		flfrrom=open(fromdir,'rb')
 		flto=open(todir,'wb')
@@ -18,6 +19,8 @@ def cpfl(fromdir,todir,verbose=True):
 			btfom=flfrrom.read(blksz)
 			if not btfom:break
 			flto.write(btfom)
+		flfrrom.close()
+		flto.close()
 			
 def copytree(dfr,dto,verbose=0):
 	fc=dc=0

@@ -4,8 +4,8 @@ neolog=[ 'login1@test.ru', 'login2@test.ru']
 
 try:
     l=[]
-    f=open('login.txt','r')
-    g=open('loginresult.txt','w')
+    with open('login.txt','r') as f
+    with open('loginresult.txt','w') as g
     g.write('HOST,GOOD,WARNING\n')
     line = f.readlines()
     for x in line:
@@ -30,10 +30,9 @@ except:
     print ('error')
 
 
-g=open('loginresult.txt','a')
+with open('loginresult.txt','a') as g
 for k,v in d.items():
         g.write(k+',,\n')
         hj=map(None,v.values()[0],v.values()[1])
         for ho in hj:
             g.write(','+str(ho).strip('()')+'\n')
-g.close()
