@@ -55,7 +55,7 @@ def createAnsibleTree(path=None, rolename='test_role', mode=None):
     if not os.path.exists(dirname):
         os.makedirs(dirname)
         print('Directory {} was created'.format(dirname))
-       print('Start to create ansible tree...')
+        print('Start to create ansible tree...')
         for item in anslist:
             os.makedirs(dirname+'/'+item)
         print('Done.')
@@ -64,7 +64,7 @@ def createAnsibleTree(path=None, rolename='test_role', mode=None):
     createSampleYml(dirname)
 
 def main():
-   if len(sys.argv)<3:
+    if len(sys.argv)<3:
         print('ERROR with parameters. Usage of {} {} {} {}'.format(sys.argv[0],'<directory for role>','<role name>',r'<optional - "long" - parameter for full ansible folders tree>'))
         sys.exit(0)
     if len(sys.argv)==3:
