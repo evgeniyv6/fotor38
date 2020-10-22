@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from link_node import Node
-from stack import Stack
+from mystack import Stack
 
 # FIFO
 class Queue(Stack):
