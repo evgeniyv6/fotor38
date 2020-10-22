@@ -5,8 +5,8 @@ from threading import Thread
 import time
 import random
 
-from stack import Stack
-from queue import Queue
+from mystack import Stack
+from myqueue import Queue
 
 logging.basicConfig(
     level = logging.DEBUG,
