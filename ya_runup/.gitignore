@@ -6,4 +6,4 @@
 __pycache__/
 *.py[cod]
 *$py.class
-/linked_list/in_asyncio_draft.py
+**/in_asyncio_draft.py
